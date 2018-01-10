@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ ! -r /etc/hosts ]; then
+if [ ! -e /etc/hosts ]; then
     echo "127.0.0.1 localhost $(hostname)" > /etc/hosts
 fi
 export BUILD_ZLIB=False
@@ -10,7 +10,6 @@ sh Configure -des -Dprefix=/usr                 \
                   -Dman3dir=/usr/share/man/man3 \
                   -Dpager="/usr/bin/less -isR"  \
                   -Duseshrplib                  \
-                  -Dusethreads
-make -j $SHED_NUMJOBS
-make DESTDIR=${SHED_FAKEROOT} install
-unset BUILD_ZLIB BUILD_BZIP2
+                  -Dusethreads || return 1
+make -j $SHED_NUMJOBS || return 1
+make DESTDIR="$SHED_FAKEROOT" install || return 1

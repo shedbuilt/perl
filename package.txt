@@ -1,5 +1,5 @@
 NAME=perl
-VERSION=5.26.0
-REVISION=1
-SRC=http://www.cpan.org/src/5.0/perl-5.26.0.tar.xz
-SRCMD5=8c6995718e4cb62188f0d5e3488cd91f
+VERSION=5.26.1
+REVISION=2
+SRC=http://www.cpan.org/src/5.0/perl-5.26.1.tar.xz
+SRCMD5=70e988b4318739b0cf3ad5e120bfde88
