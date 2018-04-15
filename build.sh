@@ -1,12 +1,12 @@
 #!/bin/bash
 case "$SHED_BUILD_MODE" in
     toolchain)
-        sh Configure -des -Dprefix=/tools -Dlibs=-lm || return 1
-        make -j $SHED_NUM_JOBS || return 1
-        mkdir -pv "${SHED_FAKE_ROOT}/tools/bin"
-        cp -v perl cpan/podlators/scripts/pod2man "${SHED_FAKE_ROOT}/tools/bin"
-        mkdir -pv "${SHED_FAKE_ROOT}/tools/lib/perl5/5.26.1"
-        cp -Rv lib/* "${SHED_FAKE_ROOT}/tools/lib/perl5/5.26.1"
+        sh Configure -des -Dprefix=/tools -Dlibs=-lm &&
+        make -j $SHED_NUM_JOBS &&
+        mkdir -pv "${SHED_FAKE_ROOT}/tools/bin" &&
+        cp -v perl cpan/podlators/scripts/pod2man "${SHED_FAKE_ROOT}/tools/bin" &&
+        mkdir -pv "${SHED_FAKE_ROOT}/tools/lib/perl5/${SHED_PKG_VERSION}" &&
+        cp -Rv lib/* "${SHED_FAKE_ROOT}/tools/lib/perl5/${SHED_PKG_VERSION}"
         ;;
     *)
         if [ ! -e /etc/hosts ]; then
@@ -20,8 +20,8 @@ case "$SHED_BUILD_MODE" in
                           -Dman3dir=/usr/share/man/man3 \
                           -Dpager="/usr/bin/less -isR"  \
                           -Duseshrplib                  \
-                          -Dusethreads || return 1
-        make -j $SHED_NUM_JOBS || return 1
-        make DESTDIR="$SHED_FAKE_ROOT" install || return 1
+                          -Dusethreads &&
+        make -j $SHED_NUM_JOBS &&
+        make DESTDIR="$SHED_FAKE_ROOT" install
         ;;
 esac
