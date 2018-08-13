@@ -1,7 +1,7 @@
 NAME=perl
-VERSION=5.26.2
-REVISION=1
-SRC=https://www.cpan.org/src/5.0/perl-5.26.2.tar.xz
-SRCMD5=1fa1b53eeff76aa37b17bfc9b2771671
+VERSION=5.28.0
+REVISION=2
+SRC=https://www.cpan.org/src/5.0/perl-5.28.0.tar.xz
+SRCMD5=f3245183c0a08f65e94a3333995af08e
 OPTIONS=toolchain|bootstrap|release
 DEFAULTS=release

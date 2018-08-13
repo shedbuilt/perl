@@ -7,7 +7,9 @@ fi
 # Configure, Build and Install
 if [ -n "${SHED_PKG_LOCAL_OPTIONS[toolchain]}" ]; then
     sh Configure -des -Dprefix=${SHED_PKG_LOCAL_PREFIX} \
-                      -Dlibs=-lm &&
+                      -Dlibs=-lm \
+                      -Uloclibpth \
+                      -Ulocincpth &&
     make -j $SHED_NUM_JOBS &&
     mkdir -pv "${SHED_FAKE_ROOT}${SHED_PKG_LOCAL_PREFIX}/bin" &&
     cp -v perl cpan/podlators/scripts/pod2man "${SHED_FAKE_ROOT}${SHED_PKG_LOCAL_PREFIX}/bin" &&
