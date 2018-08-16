@@ -4,6 +4,9 @@ SHED_PKG_LOCAL_PREFIX='/usr'
 if [ -n "${SHED_PKG_LOCAL_OPTIONS[toolchain]}" ]; then
     SHED_PKG_LOCAL_PREFIX='/tools'
 fi
+# Patch
+# Fix in-place editing file handle issue in 5.28.0, remove for 5.28.1 and later
+patch -Np1 -i "${SHED_PKG_PATCH_DIR}/0001-perl-133314-always-close-the-directory-handle-on-cle.patch" || exit 1
 # Configure, Build and Install
 if [ -n "${SHED_PKG_LOCAL_OPTIONS[toolchain]}" ]; then
     sh Configure -des -Dprefix=${SHED_PKG_LOCAL_PREFIX} \
